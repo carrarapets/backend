@@ -1,0 +1,68 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// criar uma migration: yarn prisma migrate dev
+model User {
+  id String @id @default(uuid())
+  name String
+  email String
+  cpf String
+  rg String
+  password String
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  //animais Pets @relation(fields: [pets_id], references: [id])
+
+
+  @@map("cliente")
+  //pets_id String
+}
+
+model Driver {
+  id String @id @default(uuid())
+  name String
+  email String
+  cnh String
+  password String
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+  
+  carros Carro @relation(fields: [carro_id], references: [id])
+
+  @@map("motorista")
+  carro_id String
+}
+model Carro {
+  id String @id @default(uuid())
+  name String
+  email String
+  password String
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("carros")
+carros Driver[]
+}
+model Pets {
+  id String @id @default(uuid())
+  name String
+  marca String
+  placa String
+  renavam String
+  cor String
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("animais")
+  //cliente User[]
+}
