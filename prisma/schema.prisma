@@ -66,3 +66,12 @@ model Pets {
   @@map("animais")
   //cliente User[]
 }
+
+model Pedido {
+  id String @id @default(uuid())
+  pay Int
+  
+  
+  @@map("pedido")
+  
+}
