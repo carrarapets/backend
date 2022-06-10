@@ -1,8 +1,8 @@
 import prismaClient from '../../prisma'
 import {hash} from 'bcryptjs'
 
-interface UserRequest{
-    pay: BigInteger;
+interface PedidoRequest{
+    pay: number;
    
     
     
@@ -10,13 +10,13 @@ interface UserRequest{
 }
 
 class CreatePedidoService{
-    async execute({pay}:UserRequest){
+    async execute({pay}:PedidoRequest){
         
        
-
-        const pedido = await prismaClient.pedido({
+const teste = await prismaClient.pedido
+        const pedido = await prismaClient.pedido.create({
             data:{
-                pay: pay,
+               pay:pay,
             
             },
             select:{
