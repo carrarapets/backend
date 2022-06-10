@@ -72,6 +72,6 @@ model Pedido {
   pay Int
   
   
-  @@map("pedido")
+  @@map("pedidos")
   
 }
